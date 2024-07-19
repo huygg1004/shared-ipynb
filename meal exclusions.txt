@@ -1,0 +1,25 @@
+# def meal_exclusions(recipe_df, excluded_list, mean_table, user_index, flag_dynamic, count_excl):
+#     count_excl += 1
+#     user_rating = mean_table.loc[mean_table['user_id'] == user_index, 'rating'].iloc[0]
+#     if count_excl == 1: #first time user exclude a meal?
+#         excluded_list.extend(ast.literal_eval(recipe_df.head(1)['ingredients'].values[0]))
+#         # excluded_list.extend(recipe_df.head(1)['ingredients'].values[0])
+#         recipe_df = recipe_df.drop(recipe_df.head(1).index)
+#     else:
+#         #Adjust rating based on common ingredients with exclusion list:
+#         set1 = set(excluded_list)
+#         # ingredient_list = ast.literal_eval(recipe_df.head(1)['ingredients'].values[0])
+#         ingredient_list = recipe_df.head(1)['ingredients'].values[0]
+#         set2 = set(ingredient_list)
+#         intersection_ingredients = set1.intersection(set2)
+#         recipe_df = recipe_df.drop(recipe_df.head(1).index)
+#         for index, row in recipe_df.iterrows():
+#             # ingredients_1 = ast.literal_eval(row['ingredients'])
+#             ingredients_1 = row['ingredients']
+#             common_ingredients = set(ingredients_1).intersection(intersection_ingredients)
+#             if common_ingredients:
+#                 flag_dynamic = True
+#                 weight = len(common_ingredients) * round(user_rating % 0.1, 3)
+#                 recipe_df.at[index, 'rating'] -= weight
+#     recipe_df = recipe_df.sort_values(by='rating', ascending=False)   
+#     return recipe_df, excluded_list, flag_dynamic, count_excl
